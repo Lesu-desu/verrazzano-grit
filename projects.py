@@ -85,8 +85,29 @@ HOME_GALLERY = [
 # the names automatically, so even a short list fills the width.
 # ---------------------------------------------------------------
 CLIENTS = [
-    "Mainstreet Capital",
     "Bolt",
+    "Moniepoint",
+    "PricewaterhouseCoopers",
+    "Infinera Agribusiness Ltd",
+    "Quanteq Technology",
+    "Nigerstar 7",
+    "Ibile Holdings",
+    "Zephr Training Center",
+    "Whanedoe",
+    "ATC",
+    "Meed Networks",
+    "Kitchen Muse",
+    "Mainstreet Capital",
+    "YF Construction",
+    "SERPLAT",
+    "Athena Centre",
+    "FCTA",
+    "VIO",
+    "One Kobo Technologies",
+    "Kids & Bibs Preparatory",
+    "Kids & Bibs Pre-school",
+    "Private Homes",
+    "Private Shops",
 ]
 
 PROJECTS = [
