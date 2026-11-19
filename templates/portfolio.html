@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Selected work by Verrazzano & Grit: offices, residences, retail and technical spaces, fitted out and furnished across Abuja and Lagos." />
+  <meta name="theme-color" content="#f2ede3" />
+  <title>Portfolio — Verrazzano &amp; Grit</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css', v=static_v('css/style.css')) }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/portfolio.css', v=static_v('css/portfolio.css')) }}">
+</head>
+<body class="portfolio-page">
+
+  {# Photo slideshow. Slides open the full-screen gallery at that photo. #}
+  {% macro slider(p, variant='', concept=false, autoplay=false) %}
+  <div class="pf-slider {{ variant }}" data-id="{{ p.id }}" data-name="{{ p.name }}"{% if autoplay %} data-autoplay{% endif %} role="group" aria-roledescription="carousel" aria-label="{{ p.name }} photos">
+    <div class="pf-track">
+      {% for src in p.images %}
+      <button type="button" class="pf-slide" data-open="{{ p.id }}" data-index="{{ loop.index0 }}" data-name="{{ p.name }}"{% if not loop.first %} tabindex="-1"{% endif %} aria-label="View {{ p.name }}, photo {{ loop.index }} of {{ p.images|length }}, full screen">
+        <img src="{{ src }}" alt="{{ p.name }}{% if p.location %}, {{ p.location }}{% endif %}, photo {{ loop.index }}"{% if not loop.first or not autoplay %} loading="lazy"{% endif %}>
+      </button>
+      {% endfor %}
+    </div>
+    {% if concept %}<span class="pf-tag">Concept</span>{% endif %}
+    {% if p.images|length > 1 %}
+    <button type="button" class="pf-arrow pf-arrow--prev" aria-label="Previous photo">←</button>
+    <button type="button" class="pf-arrow pf-arrow--next" aria-label="Next photo">→</button>
+    <span class="pf-counter" aria-hidden="true">1 / {{ p.images|length }}</span>
+    {% if autoplay %}<button type="button" class="pf-pause" aria-label="Pause slideshow">Pause</button>{% endif %}
+    {% endif %}
+  </div>
+  {% endmacro %}
+
+  {# One project: slideshow, then name, location and description. #}
+  {% macro tile(p, concept=false) %}
+  <article class="pf-tile">
+    {{ slider(p, concept=concept) }}
+    <div class="pf-cap">
+      <h3>{{ p.name }}</h3>
+      {% if p.location %}<p class="pf-where">{{ p.location }}</p>{% endif %}
+      <p class="pf-desc">{{ p.desc }}</p>
+      {% if p.videos %}
+      <button type="button" class="pf-link" data-film data-src="{{ p.videos[0] }}" data-poster="{{ p.images[0] }}" data-title="{{ p.name }}">Watch the film</button>
+      {% endif %}
+    </div>
+  </article>
+  {% endmacro %}
+
+  <header id="header">
+    <div class="wrap nav">
+      <a href="/#home" class="logo" aria-label="Verrazzano and Grit home">Verrazzano <span>&amp;</span> Grit</a>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="/#home">Home</a></li>
+        <li><a href="/about">About</a></li>
+        <li><a href="/services">Services</a></li>
+        <li><a href="/portfolio" aria-current="page">Portfolio</a></li>
+        <li><a href="/#contact">Contact</a></li>
+      </ul>
+
+      <a href="/#contact" class="btn btn--sm btn--nav">Book a Consultation</a>
+      <button class="burger" id="burger" type="button" aria-label="Toggle menu" aria-controls="navLinks" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- INTRO -->
+    <section class="pf-intro" aria-labelledby="pf-title">
+      <div class="wrap pf-intro-grid">
+        <h1 id="pf-title"><span class="pf-line"><span>Selected work</span></span></h1>
+        <p class="pf-lead">Offices, homes, shops and technical spaces, fitted out and furnished across Abuja and Lagos.</p>
+      </div>
+    </section>
+
+    <!-- FEATURED PROJECT -->
+    {% if featured %}
+    <section class="pf-feature" aria-labelledby="pf-feature-title">
+      <div class="wrap pf-feature-grid">
+        {{ slider(featured, variant='pf-slider--feature', autoplay=true) }}
+        <div class="pf-feature-text">
+          <h2 id="pf-feature-title">{{ featured.name }}</h2>
+          {% if featured.location %}<p class="pf-where">{{ featured.location }}</p>{% endif %}
+          <p class="pf-desc">{{ featured.desc }}</p>
+          <div class="pf-feature-actions">
+            <button type="button" class="btn pf-open" data-open="{{ featured.id }}">View all {{ featured.images|length }} photos</button>
+            {% if featured.videos %}
+            <button type="button" class="pf-link" data-film data-src="{{ featured.videos[0] }}" data-poster="{{ featured.images[0] }}" data-title="{{ featured.name }}">Watch the film</button>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </section>
+    {% endif %}
+
+    <!-- MORE COMPLETED PROJECTS -->
+    {% if others %}
+    <section class="pf-projects" aria-label="More completed projects">
+      <div class="wrap pf-grid">
+        {% for p in others %}{{ tile(p) }}{% endfor %}
+      </div>
+    </section>
+    {% endif %}
+
+    <!-- FILMS -->
+    {% if films %}
+    <section class="pf-films" id="films" aria-labelledby="pf-films-title">
+      <div class="wrap">
+        <div class="pf-films-head">
+          <h2 id="pf-films-title">Watch the work</h2>
+          <p>Walk through the finished spaces on film.</p>
+        </div>
+        <div class="pf-films-grid">
+          {% for f in films %}
+          <article class="pf-film-card">
+            <button type="button" class="pf-film" data-film data-name="{{ f.title }}" data-src="{{ f.src }}" data-youtube="{{ f.youtube }}" data-poster="{{ f.poster }}" data-title="{{ f.title }}" aria-label="Play {{ f.title }}">
+              {% if f.poster %}<img src="{{ f.poster }}" alt="" loading="lazy">{% endif %}
+              <span class="pf-play" aria-hidden="true">▶</span>
+            </button>
+            <h3>{{ f.title }}</h3>
+            {% if f.where %}<p class="pf-where">{{ f.where }}</p>{% endif %}
+          </article>
+          {% endfor %}
+        </div>
+      </div>
+    </section>
+    {% endif %}
+
+    <!-- CONCEPT VISUALISATIONS (AI-generated) -->
+    {% if concepts %}
+    <section class="pf-concepts" aria-labelledby="pf-concepts-title">
+      <div class="wrap">
+        <div class="pf-concepts-head">
+          <h2 id="pf-concepts-title">Concept visualisations</h2>
+          <p>Computer-generated images that show the design direction we would take for a space. They are not photographs of completed work.</p>
+        </div>
+        <div class="pf-grid pf-grid--concepts">
+          {% for p in concepts %}{{ tile(p, concept=true) }}{% endfor %}
+        </div>
+      </div>
+    </section>
+    {% endif %}
+
+    <!-- CTA -->
+    <section class="pf-cta" aria-labelledby="pf-cta-title">
+      <div class="wrap pf-cta-inner">
+        <h2 id="pf-cta-title">Have a space in mind?</h2>
+        <div>
+          <p>Tell us about the space, the brief and the date. We will start with a conversation.</p>
+          <a href="/#contact" class="btn pf-cta-btn">Book a Consultation</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <div class="foot-top">
+        <a href="/#home" class="foot-brand">Verrazzano <span>&amp;</span> Grit</a>
+        <ul class="foot-links">
+          <li><a href="/#home">Home</a></li>
+          <li><a href="/about">About</a></li>
+          <li><a href="/services">Services</a></li>
+          <li><a href="/portfolio" aria-current="page">Portfolio</a></li>
+          <li><a href="/#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div class="foot-bottom">
+        <span>© <span id="year"></span> Verrazzano &amp; Grit. All rights reserved.</span>
+        <span>Construction Management · Interior Design · Furniture Production</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- GALLERY LIGHTBOX -->
+  <div class="pf-lightbox" id="pfLightbox" role="dialog" aria-modal="true" aria-label="Project gallery" hidden>
+    <button type="button" class="pf-lb-close" id="pfLbClose" aria-label="Close gallery">✕</button>
+    <button type="button" class="pf-lb-nav pf-lb-prev" id="pfLbPrev" aria-label="Previous photo">←</button>
+    <figure class="pf-lb-stage">
+      <img id="pfLbImage" src="" alt="">
+      <figcaption>
+        <span id="pfLbTitle"></span>
+        <span id="pfLbCount"></span>
+      </figcaption>
+    </figure>
+    <button type="button" class="pf-lb-nav pf-lb-next" id="pfLbNext" aria-label="Next photo">→</button>
+  </div>
+
+  <!-- WALKTHROUGH VIDEO -->
+  <div class="pf-lightbox pf-videobox" id="pfVideoBox" role="dialog" aria-modal="true" aria-label="Film" hidden>
+    <button type="button" class="pf-lb-close" id="pfVideoClose" aria-label="Close video">✕</button>
+    <div class="pf-video-stage" id="pfVideoStage"></div>
+  </div>
+
+  <script>
+    window.PF = {
+      projects: {{ projects|tojson }},
+      staticBase: "{{ url_for('static', filename='') }}"
+    };
+  </script>
+  <script src="{{ url_for('static', filename='js/main.js', v=static_v('js/main.js')) }}"></script>
+  <script src="{{ url_for('static', filename='js/portfolio.js', v=static_v('js/portfolio.js')) }}"></script>
+</body>
+</html>

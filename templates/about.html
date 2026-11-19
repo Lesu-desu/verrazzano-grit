@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Discover Verrazzano & Grit's considered approach to Construction Management, Interior Design and Furniture Production." />
+  <meta name="theme-color" content="#f2ede3" />
+  <title>About Us — Verrazzano &amp; Grit</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css', v=static_v('css/style.css')) }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/about.css', v=static_v('css/about.css')) }}">
+  <noscript><style>.reveal{opacity:1;transform:none}</style></noscript>
+</head>
+<body class="about-page">
+  <header id="header">
+    <div class="wrap nav">
+      <a href="/#home" class="logo" aria-label="Verrazzano and Grit home">Verrazzano <span>&amp;</span> Grit</a>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="/#home">Home</a></li>
+        <li><a href="/about" aria-current="page">About</a></li>
+        <li><a href="services">Services</a></li>
+        <li><a href="/portfolio">Portfolio</a></li>
+        <li><a href="/#contact">Contact</a></li>
+      </ul>
+
+      <a href="/#contact" class="btn btn--sm btn--nav">Book a Consultation</a>
+      <button class="burger" id="burger" type="button" aria-label="Toggle menu" aria-controls="navLinks" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <section class="about-hero" aria-labelledby="about-hero-title">
+      <div class="about-hero-image" aria-hidden="true">
+        <img src="{{ url_for('static', filename='media/portfolio-residence-front.jpg') }}" alt="" fetchpriority="high">
+      </div>
+      <div class="about-hero-shade" aria-hidden="true"></div>
+
+      <div class="wrap about-hero-content">
+        <p class="about-kicker">THE COMPANY · VERRAZZANO &amp; GRIT</p>
+        <h1 id="about-hero-title">A considered approach<br>to <em>every space.</em></h1>
+        <p class="about-hero-lead">We bring Construction Management, Interior Design and Furniture Production together through one connected approach to creating and shaping spaces.</p>
+        <a class="about-hero-link" href="#our-perspective">Discover our perspective <span aria-hidden="true">↓</span></a>
+      </div>
+
+      <div class="about-hero-foot wrap" aria-hidden="true">
+        <span>THOUGHTFULLY CONCEIVED</span>
+        <span>CAREFULLY CONSIDERED</span>
+        <span>01 / 04</span>
+      </div>
+    </section>
+
+    <section class="about-perspective section-pad" id="our-perspective" aria-labelledby="perspective-title">
+      <div class="wrap">
+        <div class="about-perspective-grid">
+          <div class="about-perspective-heading reveal">
+            <p class="eyebrow">Our perspective</p>
+            <h2 id="perspective-title">Three disciplines.<br><em>One connected vision.</em></h2>
+          </div>
+          <div class="about-perspective-copy reveal">
+            <p class="about-copy-lead">A well-considered space is shaped by more than one decision. It takes a clear direction, thoughtful design and careful execution.</p>
+            <p>At Verrazzano &amp; Grit, Construction Management, Interior Design and Furniture Production are connected parts of the same conversation. Each brings a different perspective to a project, helping the details work together from the initial brief through to the finished environment.</p>
+            <p>Our focus is on understanding what a space needs to do, then bringing its practical and visual elements into a coherent whole.</p>
+          </div>
+        </div>
+
+        <div class="about-statement reveal">
+          <span class="about-statement-mark" aria-hidden="true">“</span>
+          <p>Good spaces are not simply assembled. They are <em>thought through.</em></p>
+          <span class="about-statement-rule" aria-hidden="true"></span>
+        </div>
+      </div>
+    </section>
+
+    <section class="about-disciplines section-pad" aria-labelledby="disciplines-title">
+      <div class="wrap">
+        <div class="about-section-heading reveal">
+          <div>
+            <p class="eyebrow">What we do</p>
+            <h2 id="disciplines-title">Three disciplines.<br><em>One standard of care.</em></h2>
+          </div>
+          <p>Each discipline has its own role. Together, they create a more connected way to think about a project and the space it becomes.</p>
+        </div>
+
+        <div class="about-discipline-grid">
+          <article class="about-discipline reveal">
+            <div class="about-discipline-image about-discipline-image--construction">
+              <img src="{{ url_for('static', filename='media/construct.jpg') }}" alt="Interior construction and fit-out work in progress" loading="lazy">
+              <span class="about-image-index">01</span>
+            </div>
+            <div class="about-discipline-copy">
+              <p class="about-discipline-label">PLAN · COORDINATE · OVERSEE</p>
+              <h3>Construction<br>Management</h3>
+              <p>Planning, coordination and project oversight that bring people, programme, budget and quality into focus throughout delivery.</p>
+              <a href="/#contact" class="about-text-link">Discuss a project <span aria-hidden="true">↗</span></a>
+            </div>
+          </article>
+
+          <article class="about-discipline reveal">
+            <div class="about-discipline-image">
+              <img src="{{ url_for('static', filename='media/office.jpg') }}" alt="Warm contemporary office interior with timber detailing" loading="lazy">
+              <span class="about-image-index">02</span>
+            </div>
+            <div class="about-discipline-copy">
+              <p class="about-discipline-label">IMAGINE · RESOLVE · REFINE</p>
+              <h3>Interior Design</h3>
+              <p>Developing layouts, materials, lighting and finishes into cohesive, functional spaces shaped around the brief.</p>
+              <a href="/#contact" class="about-text-link">Discuss a project <span aria-hidden="true">↗</span></a>
+            </div>
+          </article>
+
+          <article class="about-discipline reveal">
+            <div class="about-discipline-image about-discipline-image--furniture">
+              <img src="{{ url_for('static', filename='media/couch.png') }}" alt="Upholstered furniture piece" loading="lazy">
+              <span class="about-image-index">03</span>
+            </div>
+            <div class="about-discipline-copy">
+              <p class="about-discipline-label">SELECT · MAKE · FINISH</p>
+              <h3>Furniture Production</h3>
+              <p>Producing furniture and considered pieces with attention to proportion, material, function and finish.</p>
+              <a href="/#contact" class="about-text-link">Discuss a project <span aria-hidden="true">↗</span></a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="about-method section-pad" aria-labelledby="method-title">
+      <div class="wrap about-method-grid">
+        <figure class="about-method-image reveal">
+          <img src="{{ url_for('static', filename='media/65.jpeg') }}" alt="Finished contemporary interior with clean lines and considered detailing" loading="lazy">
+          <figcaption><span>THE DETAILS MATTER</span><span>VERRAZZANO &amp; GRIT</span></figcaption>
+        </figure>
+
+        <div class="about-method-content reveal">
+          <p class="eyebrow">Our approach</p>
+          <h2 id="method-title">From first thought<br>to <em>final detail.</em></h2>
+          <p class="about-method-intro">Every project begins with its own brief. Our approach is to understand it clearly, give the work a considered direction and keep the different elements connected as the project develops.</p>
+
+          <ol class="about-steps">
+            <li><span>01</span><div><h3>Understand the brief</h3><p>Clarify the purpose, priorities and practical needs of the space.</p></div></li>
+            <li><span>02</span><div><h3>Shape the direction</h3><p>Bring the design intent, materials and key decisions into focus.</p></div></li>
+            <li><span>03</span><div><h3>Coordinate the work</h3><p>Connect the people, production and on-site activities involved in delivery.</p></div></li>
+            <li><span>04</span><div><h3>Resolve the details</h3><p>Keep function, finish and the overall vision in view through to completion.</p></div></li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <section class="about-cta" aria-labelledby="about-cta-title">
+      <div class="about-cta-image" aria-hidden="true">
+        <img src="{{ url_for('static', filename='media/portfolio-residence-aerial.jpg') }}" alt="" loading="lazy">
+      </div>
+      <div class="about-cta-overlay" aria-hidden="true"></div>
+      <div class="wrap about-cta-content reveal">
+        <p class="about-kicker">A SPACE TO SHAPE</p>
+        <h2 id="about-cta-title">Have a project<br>in <em>mind?</em></h2>
+        <p>Tell us what you are looking to create. Let's start with a conversation about the space, the brief and what matters most.</p>
+        <a href="/#contact" class="btn about-cta-button">Book a Consultation <span aria-hidden="true">↗</span></a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <div class="foot-top">
+        <a href="/#home" class="foot-brand">Verrazzano <span>&amp;</span> Grit</a>
+        <ul class="foot-links">
+          <li><a href="/#home">Home</a></li>
+          <li><a href="/about" aria-current="page">About</a></li>
+          <li><a href="services">Services</a></li>
+          <li><a href="/portfolio">Portfolio</a></li>
+          <li><a href="/#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div class="foot-bottom">
+        <span>© <span id="year"></span> Verrazzano &amp; Grit. All rights reserved.</span>
+        <span>Construction Management · Interior Design · Furniture Production</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="{{ url_for('static', filename='js/main.js', v=static_v('js/main.js')) }}"></script>
+</body>
+</html>

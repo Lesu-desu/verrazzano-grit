@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Verrazzano &amp; Grit — Construction, Interiors &amp; Furniture</title>
+  <meta name="description" content="Verrazzano & Grit brings Construction Management, Interior Design and Furniture Production together through a considered approach to spaces." />
+
+  <!-- Opening curtain: plays once per visit, only when landing on the top of the home page -->
+  <script>
+    (function () {
+      try {
+        var r = document.documentElement;
+        if (location.hash || window.scrollY > 0 ||
+            matchMedia('(prefers-reduced-motion: reduce)').matches ||
+            sessionStorage.getItem('vg-intro')) return;
+        sessionStorage.setItem('vg-intro', '1');
+        r.classList.add('intro-on', 'intro-hold');
+        // safety net: never leave the curtain up if the page script fails
+        setTimeout(function () { r.classList.remove('intro-on', 'intro-hold'); }, 5000);
+      } catch (e) {}
+    })();
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css', v=static_v('css/style.css')) }}">
+
+  <noscript>
+    <style>
+      .hero-stage{height:100svh !important;}
+      .hero{--open:1 !important;--sweep:0 !important;}
+      .hero-foot h1, .hero-foot .lead, .hero-actions{opacity:0 !important;}
+      .reveal, .shot{opacity:1 !important;transform:none !important;}
+    </style>
+  </noscript>
+</head>
+<body>
+
+  <!-- OPENING CURTAIN: the logo sits across the seam and splits with the two panels -->
+  {% macro intro_logo() %}
+    {%- set ns = namespace(n=0) -%}
+    <span class="intro-logo">
+      {%- for word in ['Verrazzano', '&', 'Grit'] -%}
+        <span class="iw{% if word == '&' %} iw--amp{% endif %}">
+          {%- for ch in word -%}<span class="il" style="--n:{{ ns.n }}">{{ ch }}</span>{%- set ns.n = ns.n + 1 -%}{%- endfor -%}
+        </span>
+      {%- endfor -%}
+    </span>
+  {% endmacro %}
+  <div class="intro" id="intro" aria-hidden="true">
+    <div class="intro-panel intro-panel--l"><div class="intro-stage">{{ intro_logo() }}</div></div>
+    <div class="intro-panel intro-panel--r"><div class="intro-stage">{{ intro_logo() }}</div></div>
+  </div>
+
+  <!-- HEADER -->
+  <header id="header">
+    <div class="wrap nav">
+      <a href="#home" class="logo">Verrazzano <span>&amp;</span> Grit</a>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#home">Home</a></li>
+        <li><a href="/about">About</a></li>
+        <li><a href="services">Services</a></li>
+        <li><a href="{{ url_for('portfolio') }}">Portfolio</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+
+      <a href="#contact" class="btn btn--sm btn--nav">Book a Consultation</a>
+
+      <button class="burger" id="burger" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- HERO: SCROLL-DRIVEN PORTAL -->
+  <section class="hero-stage" id="home">
+    <div class="hero">
+
+      <div class="hero-bg" aria-hidden="true">
+        <div class="portal-video">
+          <video
+            src="{{ url_for('static', filename='media/house.mp4') }}"
+            autoplay muted loop playsinline preload="auto"></video>
+        </div>
+        <div class="portal-mask"></div>
+        <div class="portal-rim"></div>
+        <div class="portal-ticks"></div>
+        <div class="portal-sweep"></div>
+      </div>
+
+      <div class="wrap hero-head">
+        <p class="eyebrow">A connected approach to spaces</p>
+      </div>
+
+      <div class="hero-center">
+        <p class="hero-hint" aria-hidden="true">Scroll to open <span>↓</span></p>
+      </div>
+
+      <div class="wrap hero-foot">
+        <h1 class="hero-title" aria-label="Shaping Exceptional Spaces">
+          <span class="hero-word"><span>Shaping</span></span>
+          <span class="hero-word"><em>Exceptional</em></span>
+          <span class="hero-word"><span>Spaces</span></span>
+        </h1>
+
+        <p class="lead">
+          Construction Management, Interior Design and Furniture Production — connected through one considered approach.
+        </p>
+
+        <div class="hero-actions">
+          <a href="#contact" class="btn">Book a Consultation</a>
+          <a href="{{ url_for('portfolio') }}" class="btn btn--ghost">View Portfolio →</a>
+        </div>
+      </div>
+
+      <!-- MESSAGES REVEALED INSIDE THE PORTAL -->
+      <div class="portal-copy" aria-live="polite" aria-atomic="true">
+        <p class="portal-message" data-portal-message>
+          More than a <em>workspace.</em>
+        </p>
+
+        <p class="portal-message" data-portal-message>
+          Designed around your <em>ambition.</em>
+        </p>
+
+        <p class="portal-message" data-portal-message>
+          Crafted to leave an <em>impression.</em>
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SHOWCASE: THREE-SERVICE SLIDER -->
+  <section class="showcase" id="craft" aria-roledescription="carousel" aria-label="What we do">
+
+    <!-- SLIDE 1 — FURNITURE PRODUCTION -->
+    <article class="slide slide--furniture is-active" data-slide data-label="Furniture Production" aria-roledescription="slide" aria-label="1 of 3">
+      <div class="slide-media">
+        <img src="{{ url_for('static', filename='media/couch.png') }}" alt="Upholstered furniture piece">
+      </div>
+
+      <div class="slide-copy">
+        <span class="slide-eyebrow">FURNITURE PRODUCTION</span>
+        <h2>Designed with <span>intention.</span></h2>
+        <p>
+          From material selection to the final finish, each piece is considered for
+          its proportion, function and place within the wider environment.
+        </p>
+        <a href="#portfolio" class="slide-link">Explore furniture production <span>↗</span></a>
+      </div>
+    </article>
+
+    <!-- SLIDE 2 — INTERIOR DESIGN (full-bleed background) -->
+    <article class="slide slide--interior" data-slide data-label="Interior Design" aria-roledescription="slide" aria-label="2 of 3" aria-hidden="true">
+      <div class="slide-bg">
+        <img src="{{ url_for('static', filename='media/office.jpg') }}" alt="Executive office interior" loading="lazy">
+      </div>
+
+      <div class="slide-copy">
+        <span class="slide-eyebrow">INTERIOR DESIGN</span>
+        <h2>Spaces that <span>speak for you.</span></h2>
+        <p>
+          Concept, space planning, materials and finishes resolved into one
+          cohesive environment — considered in every detail and true to your brand.
+        </p>
+        <a href="#portfolio" class="slide-link">Explore our interiors <span>↗</span></a>
+      </div>
+    </article>
+
+    <!-- SLIDE 3 — CONSTRUCTION MANAGEMENT (text left, image right) -->
+    <article class="slide slide--build" data-slide data-label="Construction Management" aria-roledescription="slide" aria-label="3 of 3" aria-hidden="true">
+      <div class="slide-copy">
+        <span class="slide-eyebrow">CONSTRUCTION MANAGEMENT</span>
+        <h2>Delivered with <span>precision.</span></h2>
+        <p>
+          We plan, coordinate and supervise every trade on site — keeping budget,
+          programme and quality under one accountable roof, from first fix to
+          final handover.
+        </p>
+        <a href="#contact" class="slide-link">Start your project <span>↗</span></a>
+      </div>
+
+      <div class="slide-media">
+        <div class="slide-frame">
+          <img src="{{ url_for('static', filename='media/construct.jpg') }}" alt="Interior fit-out in progress" loading="lazy">
+        </div>
+      </div>
+    </article>
+
+    <!-- CONTROLS -->
+    <div class="showcase-ui">
+      <div class="showcase-count">
+        <b id="showCount">01</b> / 03
+        <span id="showLabel">Furniture Production</span>
+      </div>
+
+      <div class="showcase-nav">
+        <button type="button" class="show-arrow" data-dir="-1" aria-label="Previous slide">←</button>
+
+        <div class="show-dots">
+          <button type="button" class="show-dot is-active" aria-label="Go to slide 1: Furniture Production" aria-current="true"></button>
+          <button type="button" class="show-dot" aria-label="Go to slide 2: Interior Design"></button>
+          <button type="button" class="show-dot" aria-label="Go to slide 3: Construction Management"></button>
+        </div>
+
+        <button type="button" class="show-arrow" data-dir="1" aria-label="Next slide">→</button>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ABOUT: SHORT BRAND INTRODUCTION -->
+  <section class="about" id="about" aria-labelledby="about-title">
+    <div class="wrap about-layout">
+      <div class="about-content reveal">
+        <p class="eyebrow">A little about us</p>
+        <h2 id="about-title">We bring spaces<br><em>to life.</em></h2>
+
+        <p class="about-intro">
+          Verrazzano &amp; Grit brings Construction Management, Interior Design and
+          Furniture Production together to create thoughtful, functional spaces.
+        </p>
+
+        <p class="about-detail">
+          From shaping the initial vision to managing the details of delivery,
+          we connect design, craftsmanship and execution at every stage.
+        </p>
+
+        <a href="/about" class="about-link">
+          Discover our approach <span aria-hidden="true">↗</span>
+        </a>
+      </div>
+
+      <figure class="about-image reveal">
+        <img
+          src="{{ url_for('static', filename='media/65.jpeg') }}"
+          alt="Contemporary office interior with timber detailing"
+          loading="lazy"
+        >
+        <figcaption>Thoughtfully designed. Carefully delivered.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- SERVICES: INDEX LIST + LIVE IMAGE -->
+  <section class="services section-pad" id="services" aria-labelledby="services-title">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <div>
+          <p class="eyebrow">Services</p>
+          <h2 id="services-title">End-to-end,<br><em>under one roof.</em></h2>
+        </div>
+        <p>
+          Construction Management, Interior Design and Furniture Production working together to connect the brief, the design and the finished space.
+        </p>
+      </div>
+
+      <div class="svc reveal" data-svc>
+        <ul class="svc-list">
+        <li class="svc-item is-active" data-svc-item>
+          <button type="button" class="svc-head" aria-expanded="true" aria-controls="svc-1">
+            <span class="svc-num">01</span>
+            <span class="svc-name">Construction Management</span>
+            <span class="svc-plus" aria-hidden="true"></span>
+          </button>
+          <div class="svc-body" id="svc-1">
+            <div>
+              <p>Planning, coordination and project oversight that bring people, programme, budget and quality into focus throughout delivery.</p>
+              <a class="svc-link" href="#contact">Ask about construction management <span aria-hidden="true">↗</span></a>
+            </div>
+          </div>
+        </li>
+        <li class="svc-item" data-svc-item>
+          <button type="button" class="svc-head" aria-expanded="false" aria-controls="svc-2">
+            <span class="svc-num">02</span>
+            <span class="svc-name">Interior Design</span>
+            <span class="svc-plus" aria-hidden="true"></span>
+          </button>
+          <div class="svc-body" id="svc-2">
+            <div>
+              <p>Developing layouts, materials, lighting and finishes into cohesive, functional spaces shaped around the brief.</p>
+              <a class="svc-link" href="#contact">Ask about interior design <span aria-hidden="true">↗</span></a>
+            </div>
+          </div>
+        </li>
+        <li class="svc-item" data-svc-item>
+          <button type="button" class="svc-head" aria-expanded="false" aria-controls="svc-3">
+            <span class="svc-num">03</span>
+            <span class="svc-name">Furniture Production</span>
+            <span class="svc-plus" aria-hidden="true"></span>
+          </button>
+          <div class="svc-body" id="svc-3">
+            <div>
+              <p>Producing furniture and considered pieces with attention to proportion, material, function and finish.</p>
+              <a class="svc-link" href="#contact">Ask about furniture production <span aria-hidden="true">↗</span></a>
+            </div>
+          </div>
+        </li>
+        </ul>
+
+        <div class="svc-media" aria-hidden="true">
+        <img class="is-active" src="{{ url_for('static', filename='media/construct.jpg') }}" alt="" loading="lazy">
+        <img src="{{ url_for('static', filename='media/32.jpg') }}" alt="" loading="lazy">
+        <img src="{{ url_for('static', filename='media/9.jpg') }}" alt="" loading="lazy">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PORTFOLIO: SCROLL-DRIVEN IMAGE GALLERY -->
+  <section class="vg-portfolio" id="portfolio" aria-label="Selected portfolio projects">
+    <div class="vg-portfolio-intro wrap">
+      <div>
+        <p class="eyebrow">SELECTED WORK · VERRAZZANO &amp; GRIT</p>
+        <h2>Spaces that<br><em>speak for themselves.</em></h2>
+      </div>
+      <p class="vg-portfolio-lead">A showcase of thoughtful design, considered craftsmanship and spaces brought to life through our work.</p>
+    </div>
+
+    <div class="vg-scroll-gallery" data-vg-gallery style="--vg-slides: {{ home_gallery|length }};">
+      <div class="vg-gallery-stage">
+        <div class="vg-gallery-images" aria-hidden="true">
+          {% for g in home_gallery %}
+          <div class="vg-gallery-image{% if loop.first %} is-active{% endif %}" data-index="{{ loop.index0 }}" data-title="{{ g.title }}" data-category="{{ g.category }}"><img src="{{ g.src }}" alt=""{% if not loop.first %} loading="lazy"{% endif %}></div>
+          {% endfor %}
+        </div>
+
+        <div class="vg-gallery-topline"><span>VERRAZZANO &amp; GRIT</span><span>SCROLL TO EXPLORE <i aria-hidden="true">↓</i></span></div>
+        <div class="vg-gallery-caption" aria-live="polite" aria-atomic="true">
+          <div><p class="vg-gallery-category" data-vg-category>{{ home_gallery[0].category }}</p><h3 data-vg-title>{{ home_gallery[0].title }}</h3></div>
+          <div class="vg-gallery-count"><span data-vg-current>01</span><span class="vg-count-divider">/</span><span>{{ "%02d"|format(home_gallery|length) }}</span></div>
+        </div>
+        <div class="vg-gallery-progress" aria-hidden="true"><span data-vg-progress></span></div>
+      </div>
+    </div>
+
+    <!-- CLIENT MARQUEE -->
+    {% if clients %}
+    {% set reps = ((8 / clients|length)|round(0, 'ceil'))|int %}
+    <div class="vg-clients" aria-label="Clients we have worked with">
+      <p class="eyebrow vg-clients-label">WHO WE HAVE WORKED FOR</p>
+      <div class="vg-marquee">
+        <div class="vg-marquee-track">
+          <ul class="vg-marquee-group">
+            {% for r in range(reps) %}{% for c in clients %}<li>{{ c }}</li>{% endfor %}{% endfor %}
+          </ul>
+          <ul class="vg-marquee-group" aria-hidden="true">
+            {% for r in range(reps) %}{% for c in clients %}<li>{{ c }}</li>{% endfor %}{% endfor %}
+          </ul>
+        </div>
+      </div>
+    </div>
+    {% endif %}
+
+    <div class="vg-portfolio-outro wrap">
+      <div><p class="eyebrow">BEYOND THE FRAME</p><h2>See what<br><em>we create.</em></h2><p>Explore more of our projects, ideas and craftsmanship.</p></div>
+      <a class="vg-explore-link" href="{{ url_for('portfolio') }}">EXPLORE OUR WORK <span aria-hidden="true">↗</span></a>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact section-pad" id="contact">
+    <div class="wrap contact-grid">
+      <div class="reveal">
+        <p class="eyebrow">Contact</p>
+        <h2>Let's shape your<br>next space.</h2>
+        <p class="blurb">
+          Tell us about the space, the team and the timeline. We'll come back with a considered
+          response — no templates, no copy-and-paste proposals.
+        </p>
+
+        <dl class="contact-details">
+          <div>
+            <dt>Email</dt>
+            <dd><a href="mailto:{{ contact.email }}">{{ contact.email }}</a></dd>
+          </div>
+          <div>
+            <dt>Telephone</dt>
+            <dd><a href="tel:+{{ contact.whatsapp }}">{{ contact.phone }}</a></dd>
+          </div>
+          <div>
+            <dt>Studio</dt>
+            <dd>Verrazzano &amp; Grit, Abuja,  Nigeria</dd>
+          </div>
+        </dl>
+      </div>
+
+      <form class="reveal contact-form" id="contactForm" data-email="{{ contact.email }}" data-whatsapp="{{ contact.whatsapp }}" novalidate>
+        <div class="form-head">
+          <h3>Start a conversation</h3>
+          <p>Takes about a minute. We reply personally.</p>
+        </div>
+
+        <div class="form-fields">
+          <div class="form-row">
+            <div class="field">
+              <input type="text" id="cf-name" name="name" placeholder=" " required autocomplete="name">
+              <label for="cf-name">Full name</label>
+            </div>
+            <div class="field">
+              <input type="email" id="cf-email" name="email" placeholder=" " required autocomplete="email">
+              <label for="cf-email">Email address</label>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="field">
+              <input type="text" id="cf-company" name="company" placeholder=" " autocomplete="organization">
+              <label for="cf-company">Company <i>(optional)</i></label>
+            </div>
+            <div class="field">
+              <input type="tel" id="cf-phone" name="phone" placeholder=" " autocomplete="tel">
+              <label for="cf-phone">Phone <i>(optional)</i></label>
+            </div>
+          </div>
+
+          <fieldset class="field field--choice">
+            <legend>What can we help with?</legend>
+            <div class="choice-row">
+              <label class="choice"><input type="radio" name="service" value="Construction Management" required><span>Construction Management</span></label>
+              <label class="choice"><input type="radio" name="service" value="Interior Design"><span>Interior Design</span></label>
+              <label class="choice"><input type="radio" name="service" value="Furniture Production"><span>Furniture Production</span></label>
+              <label class="choice"><input type="radio" name="service" value="Not sure yet"><span>Not sure yet</span></label>
+            </div>
+          </fieldset>
+
+          <div class="field">
+            <textarea id="cf-message" name="message" placeholder=" " rows="4" maxlength="1500" required></textarea>
+            <label for="cf-message">Tell us about the space, the team and the timeline</label>
+          </div>
+
+          <!-- honeypot: real visitors never see or fill this -->
+          <div class="hp" aria-hidden="true">
+            <label>Leave this empty <input type="text" name="website" tabindex="-1" autocomplete="off"></label>
+          </div>
+
+          <button type="submit" class="btn contact-submit"><span>Send message</span> <b aria-hidden="true">↗</b></button>
+          <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
+        </div>
+
+        <div class="form-sent" tabindex="-1" role="status">
+          <span class="form-sent-mark" aria-hidden="true">↗</span>
+          <h3 data-sent-title>Your message is ready.</h3>
+          <p data-sent-msg>Press send in the app that opened to finish.</p>
+          <p class="form-sent-alt">Nothing opened? Reach us directly: <a href="mailto:{{ contact.email }}">email</a> or <a href="https://wa.me/{{ contact.whatsapp }}" target="_blank" rel="noopener">WhatsApp</a>.</p>
+          <button type="button" class="form-again">Back to the form</button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="wrap">
+      <div class="foot-top">
+        <div class="foot-brand">Verrazzano <span>&amp;</span> Grit</div>
+        <ul class="foot-links">
+          <li><a href="#home">Home</a></li>
+          <li><a href="/about">About</a></li>
+          <li><a href="services">Services</a></li>
+          <li><a href="{{ url_for('portfolio') }}">Portfolio</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div class="foot-bottom">
+        <span>© <span id="year"></span> Verrazzano &amp; Grit. All rights reserved.</span>
+        <span>Construction Management · Interior Design · Furniture Production</span>
+      </div>
+    </div>
+  </footer>
+
+
+  <!-- CONTACT: CHOOSE EMAIL OR WHATSAPP -->
+  <div class="pick" id="contactPick" role="dialog" aria-modal="true" aria-labelledby="pickTitle" hidden>
+    <div class="pick-card">
+      <button type="button" class="pick-close" data-pick-close aria-label="Close">✕</button>
+      <h3 id="pickTitle">How would you like to send this?</h3>
+      <p>Your message is ready. Choose where to send it and it will open already filled in.</p>
+      <div class="pick-actions">
+        <button type="button" class="pick-btn" data-pick="email"><div><b>Email</b><span>Opens your email app</span></div><i aria-hidden="true">↗</i></button>
+        <button type="button" class="pick-btn" data-pick="whatsapp"><div><b>WhatsApp</b><span>Opens a WhatsApp chat with us</span></div><i aria-hidden="true">↗</i></button>
+      </div>
+    </div>
+  </div>
+
+  <script src="{{ url_for('static', filename='js/main.js', v=static_v('js/main.js')) }}"></script>
+</body>
+</html>

@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Construction Management, Interior Design and Furniture Production — one connected approach from Verrazzano & Grit." />
+  <meta name="theme-color" content="#f2ede3" />
+  <title>Services — Verrazzano &amp; Grit</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css', v=static_v('css/style.css')) }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/services.css', v=static_v('css/services.css')) }}">
+  <noscript><style>.reveal{opacity:1;transform:none}</style></noscript>
+</head>
+<body class="services-page">
+
+  <header id="header">
+    <div class="wrap nav">
+      <a href="{{ url_for('index') }}#home" class="logo" aria-label="Verrazzano and Grit home">Verrazzano <span>&amp;</span> Grit</a>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="{{ url_for('index') }}#home">Home</a></li>
+        <li><a href="{{ url_for('about') }}">About</a></li>
+        <li><a href="{{ url_for('services') }}" aria-current="page">Services</a></li>
+        <li><a href="{{ url_for('portfolio') }}">Portfolio</a></li>
+        <li><a href="{{ url_for('index') }}#contact">Contact</a></li>
+      </ul>
+
+      <a href="{{ url_for('index') }}#contact" class="btn btn--sm btn--nav">Book a Consultation</a>
+      <button class="burger" id="burger" type="button" aria-label="Toggle menu" aria-controls="navLinks" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ============ HERO ============ -->
+    <section class="services-hero" aria-labelledby="services-hero-title">
+      <div class="wrap services-hero-grid">
+        <div class="services-hero-head">
+          <p class="eyebrow">What we do</p>
+          <h1 id="services-hero-title">Three disciplines.<br><em>One standard of care.</em></h1>
+        </div>
+
+        <div class="services-hero-side">
+          <p class="services-hero-lead">
+            Construction Management, Interior Design and Furniture Production — each with its own
+            role, connected through one considered approach to spaces.
+          </p>
+
+          <ol class="services-hero-index" aria-label="Services index">
+            <li><span>01</span> Construction Management</li>
+            <li><span>02</span> Interior Design</li>
+            <li><span>03</span> Furniture Production</li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ ACCORDION ============ -->
+    <section class="services" id="services" aria-labelledby="services-accordion-title">
+      <div class="wrap">
+        <h2 id="services-accordion-title" class="visually-hidden">Our services</h2>
+
+        <div class="svc" data-services>
+
+          <ul class="svc-list">
+
+            <li class="svc-item is-active">
+              <button class="svc-head" type="button"
+                      id="svc-btn-1" aria-expanded="true" aria-controls="svc-panel-1"
+                      data-label="Construction Management">
+                <span class="svc-num">01</span>
+                <span class="svc-name">Construction<br>Management</span>
+                <span class="svc-plus" aria-hidden="true"></span>
+              </button>
+              <div class="svc-body" id="svc-panel-1" role="region" aria-labelledby="svc-btn-1">
+                <div>
+                  <p>Planning, coordination and project oversight that bring people, programme,
+                     budget and quality into focus throughout delivery — from the initial brief
+                     through to final handover.</p>
+                  <ul class="svc-includes" aria-label="What is included">
+                    <li>Programme and budget planning</li>
+                    <li>Contractor and supplier coordination</li>
+                    <li>Site supervision and quality checks</li>
+                    <li>Progress reporting through to handover</li>
+                  </ul>
+                  <a class="svc-link" href="{{ url_for('portfolio') }}">See selected work <span aria-hidden="true">↗</span></a>
+                </div>
+              </div>
+            </li>
+
+            <li class="svc-item">
+              <button class="svc-head" type="button"
+                      id="svc-btn-2" aria-expanded="false" aria-controls="svc-panel-2"
+                      data-label="Interior Design">
+                <span class="svc-num">02</span>
+                <span class="svc-name">Interior<br>Design</span>
+                <span class="svc-plus" aria-hidden="true"></span>
+              </button>
+              <div class="svc-body" id="svc-panel-2" role="region" aria-labelledby="svc-btn-2">
+                <div>
+                  <p>Developing layouts, materials, lighting and finishes into cohesive, functional
+                     spaces shaped around the brief — resolved in every detail.</p>
+                  <ul class="svc-includes" aria-label="What is included">
+                    <li>Space planning and layouts</li>
+                    <li>Material, finish and colour selection</li>
+                    <li>Lighting and ceiling design</li>
+                    <li>3D visuals before anything is built</li>
+                  </ul>
+                  <a class="svc-link" href="{{ url_for('portfolio') }}">See selected work <span aria-hidden="true">↗</span></a>
+                </div>
+              </div>
+            </li>
+
+            <li class="svc-item">
+              <button class="svc-head" type="button"
+                      id="svc-btn-3" aria-expanded="false" aria-controls="svc-panel-3"
+                      data-label="Furniture Production">
+                <span class="svc-num">03</span>
+                <span class="svc-name">Furniture<br>Production</span>
+                <span class="svc-plus" aria-hidden="true"></span>
+              </button>
+              <div class="svc-body" id="svc-panel-3" role="region" aria-labelledby="svc-btn-3">
+                <div>
+                  <p>Producing furniture and considered pieces with attention to proportion,
+                     material, function and finish — built to be lived with.</p>
+                  <ul class="svc-includes" aria-label="What is included">
+                    <li>Bespoke desks, beds, wardrobes and cabinetry</li>
+                    <li>Upholstery and finishing</li>
+                    <li>Made to the dimensions of the space</li>
+                    <li>Delivery and installation</li>
+                  </ul>
+                  <a class="svc-link" href="{{ url_for('portfolio') }}">See selected work <span aria-hidden="true">↗</span></a>
+                </div>
+              </div>
+            </li>
+
+          </ul>
+
+          <div class="svc-media" aria-hidden="true">
+            <img class="is-active" src="{{ url_for('static', filename='media/construct.jpg') }}" alt="">
+            <img src="{{ url_for('static', filename='media/office.jpg') }}" alt="">
+            <img src="{{ url_for('static', filename='media/couch.png') }}" alt="" data-fit="contain">
+            <span class="svc-media-label">Construction Management</span>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ============ WAYS TO WORK TOGETHER ============ -->
+    <section class="services-models section-pad" aria-labelledby="services-models-title">
+      <div class="wrap">
+        <div class="services-method-head reveal">
+          <div>
+            <p class="eyebrow">Working together</p>
+            <h2 id="services-models-title">Start with one.<br><em>Add what you need.</em></h2>
+          </div>
+          <p class="services-method-lead">
+            Some clients come to us for a single piece. Others hand over an entire space.
+            The scope is set by the brief, and it can grow as the project does.
+          </p>
+        </div>
+
+        <div class="models-grid">
+          <article class="model reveal">
+            <h3>A single discipline</h3>
+            <p>Bring us in for one part of the work: managing the build, designing the interior or producing the furniture.</p>
+            <ul>
+              <li>Clear, defined scope</li>
+              <li>Works alongside your own team or contractors</li>
+              <li>Easy to extend later</li>
+            </ul>
+          </article>
+
+          <article class="model model--lead reveal">
+            <h3>Design and make</h3>
+            <p>We design the interior and produce the furniture for it, so the pieces are made for the room rather than fitted into it.</p>
+            <ul>
+              <li>Layout and furniture planned together</li>
+              <li>One set of drawings and one point of contact</li>
+              <li>Finishes matched across every piece</li>
+            </ul>
+          </article>
+
+          <article class="model reveal">
+            <h3>The whole project</h3>
+            <p>Construction management, interior design and furniture production under one roof, from the first brief to handover.</p>
+            <ul>
+              <li>One team accountable for the result</li>
+              <li>Programme, budget and quality managed together</li>
+              <li>A finished space, ready to use</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ SPACES WE WORK ON ============ -->
+    <section class="services-spaces section-pad" aria-labelledby="services-spaces-title">
+      <div class="wrap services-spaces-grid">
+        <figure class="services-spaces-image reveal">
+          <img src="{{ url_for('static', filename='media/65.jpeg') }}" alt="Finished contemporary interior with clean lines and considered detailing" loading="lazy">
+        </figure>
+
+        <div class="services-spaces-copy reveal">
+          <p class="eyebrow">Where we work</p>
+          <h2 id="services-spaces-title">Offices, homes, shops<br>and <em>hospitality.</em></h2>
+          <p class="services-spaces-intro">
+            Our projects across Abuja and Lagos cover a wide range of spaces. Each one starts from how
+            the space will be used.
+          </p>
+
+          <ul class="spaces-list">
+            <li>
+              <h3>Offices and institutions</h3>
+              <p>Corporate headquarters, boardrooms, reception areas, government offices and schools.</p>
+            </li>
+            <li>
+              <h3>Residences</h3>
+              <p>Apartments and private houses, including bedrooms, wardrobes and bespoke living spaces.</p>
+            </li>
+            <li>
+              <h3>Kitchens</h3>
+              <p>Custom cabinetry, island units and storage planned around the way the kitchen is used.</p>
+            </li>
+            <li>
+              <h3>Retail and hospitality</h3>
+              <p>Shop interiors, display units, counters and hotel guest rooms.</p>
+            </li>
+            <li>
+              <h3>Technical rooms</h3>
+              <p>Control rooms, monitoring desks and equipment housing for round-the-clock operations.</p>
+            </li>
+          </ul>
+
+          <a class="svc-link" href="{{ url_for('portfolio') }}">Browse the portfolio <span aria-hidden="true">↗</span></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ METHOD / PROCESS ============ -->
+    <section class="services-method section-pad" aria-labelledby="services-method-title">
+      <div class="wrap">
+        <div class="services-method-head reveal">
+          <div>
+            <p class="eyebrow">Our approach</p>
+            <h2 id="services-method-title">From first thought<br>to <em>final detail</em>.</h2>
+          </div>
+          <p class="services-method-lead">
+            Every project begins with its own brief. Our approach is to understand it clearly,
+            give the work a considered direction, and keep the different elements connected
+            as the project develops.
+          </p>
+        </div>
+
+        <ol class="svc-steps reveal">
+          <li>
+            <span class="svc-step-num">01</span>
+            <h3>Understand the brief</h3>
+            <p>Clarify the purpose, priorities and practical needs of the space.</p>
+          </li>
+          <li>
+            <span class="svc-step-num">02</span>
+            <h3>Shape the direction</h3>
+            <p>Bring the design intent, materials and key decisions into focus.</p>
+          </li>
+          <li>
+            <span class="svc-step-num">03</span>
+            <h3>Coordinate the work</h3>
+            <p>Connect the people, production and on-site activities involved in delivery.</p>
+          </li>
+          <li>
+            <span class="svc-step-num">04</span>
+            <h3>Resolve the details</h3>
+            <p>Keep function, finish and the overall vision in view through to completion.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+
+    <!-- ============ FAQ ============ -->
+    <section class="services-faq section-pad" aria-labelledby="services-faq-title">
+      <div class="wrap services-faq-grid">
+        <div class="services-faq-head reveal">
+          <p class="eyebrow">Questions</p>
+          <h2 id="services-faq-title">Before you<br><em>get in touch.</em></h2>
+          <p>Can't find your question? Book a consultation and we will talk it through.</p>
+        </div>
+
+        <div class="faq-list reveal">
+          <details class="faq-item" open>
+            <summary>Can I hire you for just one service?</summary>
+            <p>Yes. Construction management, interior design and furniture production can each be taken on their own. Many projects begin with one and add the others as they develop.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Where do you work?</summary>
+            <p>Our projects are in Abuja and Lagos. If your project is elsewhere, tell us about it and we will discuss what is possible.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Do you make furniture for spaces you did not design?</summary>
+            <p>Yes. We can produce pieces to your own drawings or specifications, or help develop the design with you.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Can I see examples of your work?</summary>
+            <p>The portfolio shows offices, residences, shops and hospitality spaces, with photographs for every project. You can open each one to see the full gallery.</p>
+          </details>
+          <details class="faq-item">
+            <summary>How do we get started?</summary>
+            <p>Book a consultation. We will ask about the space, the brief and your timeline, then agree the next step together.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CTA ============ -->
+    <section class="services-cta" aria-labelledby="services-cta-title">
+      <div class="services-cta-image" aria-hidden="true">
+        <img src="{{ url_for('static', filename='media/portfolio-residence-aerial.jpg') }}" alt="" loading="lazy">
+      </div>
+      <div class="services-cta-overlay" aria-hidden="true"></div>
+
+      <div class="wrap services-cta-content reveal">
+        <p class="services-kicker">A space to shape</p>
+        <h2 id="services-cta-title">Have a project<br>in <em>mind?</em></h2>
+        <p>Tell us what you are looking to create. Let's start with a conversation about the space, the brief and what matters most.</p>
+        <a class="btn services-cta-button" href="{{ url_for('index') }}#contact">Book a Consultation <span aria-hidden="true">↗</span></a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <div class="foot-top">
+        <a href="{{ url_for('index') }}#home" class="foot-brand">Verrazzano <span>&amp;</span> Grit</a>
+        <ul class="foot-links">
+          <li><a href="{{ url_for('index') }}#home">Home</a></li>
+          <li><a href="{{ url_for('about') }}">About</a></li>
+          <li><a href="{{ url_for('services') }}" aria-current="page">Services</a></li>
+          <li><a href="{{ url_for('portfolio') }}">Portfolio</a></li>
+          <li><a href="{{ url_for('index') }}#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div class="foot-bottom">
+        <span>© <span id="year"></span> Verrazzano &amp; Grit. All rights reserved.</span>
+        <span>Construction Management · Interior Design · Furniture Production</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="{{ url_for('static', filename='js/main.js', v=static_v('js/main.js')) }}"></script>
+  <script src="{{ url_for('static', filename='js/services.js', v=static_v('js/services.js')) }}"></script>
+</body>
+</html>
